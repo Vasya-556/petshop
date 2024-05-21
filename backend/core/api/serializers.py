@@ -1,7 +1,12 @@
 from rest_framework import serializers
-from ..models import Category
+from ..models import *
 
-class CoreSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
+
+class CustomUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email', 'status', 'profile_image']
