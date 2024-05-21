@@ -52,6 +52,7 @@ REST_FRAMEWORK = {
 
 # CORS_ALLOWED_ORIGINS = ['http://localhost:3000/']
 CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
