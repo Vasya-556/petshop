@@ -20,7 +20,7 @@ class CustomUser(models.Model):
 
     username = models.CharField(max_length=20, unique=True)
     email = models.EmailField(max_length=20, unique=True)
-    password = models.CharField(max_length=20)
+    password = models.CharField(max_length=120)
     status = models.CharField(max_length=5, choices=STATUS_CHOICES, default='user')
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
 

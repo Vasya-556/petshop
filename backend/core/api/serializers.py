@@ -9,4 +9,9 @@ class CategorySerializer(serializers.ModelSerializer):
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'status', 'profile_image']
+        fields = ['id', 'username', 'email', 'password', 'status', 'profile_image']
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'p_name', 'description', 'product_image', 'price', 'stock']
