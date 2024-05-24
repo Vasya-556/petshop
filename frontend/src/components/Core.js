@@ -2,24 +2,24 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Core() {
-const [data, setData] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get('/mymodels/')
+        axios.get('/api/categories/')
             .then(response => {
-                setData(response.data);
+                setCategories(response.data);
             })
             .catch(error => {
-                console.error('There was an error!', error);
+                console.error('There was an error fetching the categories!', error);
             });
     }, []);
 
     return (
         <div className="App">
-            <h1>My Models</h1>
+            <h1>Categories</h1>
             <ul>
-                {data.map(item => (
-                    <li key={item.id}>{item.name}</li>
+                {categories.map(category => (
+                    <li key={category.id}>{category.name}</li>
                 ))}
             </ul>
         </div>
