@@ -34,15 +34,13 @@ const SignupForm = () => {
       console.log(res.data);
       navigate('/');
       window.location.reload();
-      // Handle success (redirect, show success message, etc.)
     } catch (error) {
       console.error(error);
-      // Handle error (show error message, clear form fields, etc.)
     }
   };
 
   return (
-    <div>
+    <div className='register-container'>
         <form onSubmit={handleSubmit} className="register-form">
             <h2>Реєстрація</h2>   
             <div>

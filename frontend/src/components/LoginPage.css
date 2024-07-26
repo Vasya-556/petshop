@@ -1,9 +1,8 @@
-/* components/LoginPage/LoginPage.css */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh; /* Змінено висоту на 33vh */
+  height: 50vh; 
 }
 
 .login-form {

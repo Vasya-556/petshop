@@ -23,9 +23,10 @@ const SigninForm = () => {
     try {
       const res = await axios.post('http://localhost:8000/api/signin/', formData);
       console.log(res.data);
+      localStorage.setItem('user_id', res.data.user_id);
       localStorage.setItem('access_token', res.data.access);
       localStorage.setItem('refresh_token', res.data.refresh);
-      navigate('/'); // Redirect to home page on success
+      navigate('/'); 
       window.location.reload();
     } catch (error) {
       if (error.response && error.response.status === 401) {
