@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import './header.css'
 import axios from 'axios';
-// import { Link } from 'react-router-dom';
 
 const Header = () => {
     const [authenticated, setAuthenticated] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const userId = localStorage.getItem('user_id');
 
     useEffect(() => {
       const accessToken = localStorage.getItem('access_token');
@@ -19,13 +20,33 @@ const Header = () => {
       } else {
         setAuthenticated(false);
       }
+
+      const fetchUserData = async () => {
+        try {
+          if (!userId) {
+            setIsAdmin(false);
+            return;
+          }
+          const response = await axios.get(`http://localhost:8000/api/user/${userId}/`);
+          setIsAdmin(response.data.status === 'admin');
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+          setIsAdmin(false);
+        }
+      };
+    
+      if (userId) {
+        fetchUserData();
+      } else {
+        setIsAdmin(false);
+      }
     }, []);
   
     const logout = () => {
+      localStorage.removeItem('user_id');
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
-      // Redirect the user to the sign-in page or any other desired page
-      window.location.href = '/'; // Redirect to the sign-in page
+      window.location.href = '/'; 
       window.location.reload();
     };
 
@@ -37,9 +58,11 @@ const Header = () => {
                 </div>
                 <nav>
                     <ul>
-                        {/* <li><a href="/aboutus">Про нас</a></li>
-                        <li><a href="/contacts">Контакти</a></li> */}
+                    {isAdmin && <li><a href="/adminPage">AdminPage</a></li>}
+                    {isAdmin && <li><a href="/addProduct">AddProduct</a></li>}
+                    <li><a href="/about_us">About us</a></li>
                     {authenticated ? (<>                
+                        <li><a href="/user">UserPage</a></li>
                         <li><a onClick={logout}>Вийти</a></li>
                     </>) : (<>
                         <li><a href="/signin">Вхід</a></li>
@@ -47,10 +70,6 @@ const Header = () => {
                     </>)}
                     </ul>
                 </nav>
-                {/* <div className="search-bar">
-                    <input type="text" placeholder="Пошук..." />
-                    <button type="submit">Пошук</button>
-                </div> */}
             </div>
         </header>
     );

@@ -1,5 +1,3 @@
-/* Register.css */
-
 .register-container {
     display: flex;
     justify-content: center;
@@ -13,7 +11,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 300px;
-    margin: 0 auto; /* Додали це для центрування форми */
+    margin: 0 auto; 
   }
   
   .register-form h2 {
@@ -50,7 +48,6 @@
     background-color: #45a049;
   }
   
-  /* Центрування тексту "Реєстрація" */
   .register-form h2 {
     text-align: center;
   }
